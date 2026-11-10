@@ -230,6 +230,36 @@
     leave() { const v = curVideo(); if (v) v.pause(); },
   };
 
+  /* ---------- Слайд-шоў ---------- */
+  // Здымкі ў [data-slideshow] мяняюцца самі кожныя data-interval мс, пакуль слайд на экране.
+  const shows = $$('[data-slideshow]').map(box => {
+    const slide = box.closest('.slide');
+    const imgs = $$('img', box);
+    const bg = $('.ss-bg', slide);
+    // Размыты фон — копія таго ж здымка (браўзер бярэ яе з кэша)
+    const bgs = bg ? imgs.map(im => { const c = el('img'); c.src = im.getAttribute('src'); c.alt = ''; bg.appendChild(c); return c; }) : [];
+    const count = $('[data-ss-count]', slide);
+    const ms = +box.dataset.interval || 2000;
+    let i = 0, int = 0;
+    const show = (n) => {
+      i = (n + imgs.length) % imgs.length;
+      imgs.forEach((im, k) => im.classList.toggle('on', k === i));
+      bgs.forEach((im, k) => im.classList.toggle('on', k === i));
+      if (count) count.textContent = `${i + 1} / ${imgs.length}`;
+    };
+    if (imgs.length) show(0);
+    return {
+      slide,
+      start() { clearInterval(int); if (imgs.length < 2 || STATIC) return; show(0); int = setInterval(() => show(i + 1), ms); },
+      stop() { clearInterval(int); },
+    };
+  });
+  const curShow = () => shows.find(s => s.slide === slides[idx]);
+  hooks.slideshow = {
+    enter() { curShow()?.start(); },
+    leave() { curShow()?.stop(); },
+  };
+
   /* ---------- QR і спасылкі ---------- */
   const MOTIF = [
     '......X......', '.....XXX.....', '....XX.XX....', '...XX.X.XX...', '..XX.XXX.XX..', '.XX.XX.XX.XX.', 'XX.XX.X.XX.XX',
