@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="be">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ці ўмее ШІ лаяцца па-беларуску?</title>
+<meta name="description" content="Інтэрактыўныя заняткі з «Мовай Нанова» на Прэміі Гедройця: беларуская лаянка, праклёны, «Вушацкі словазбор» Барадуліна — і новыя скаромныя словы, створаныя разам з ChatGPT.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ці ўмее ШІ лаяцца па-беларуску?">
+<meta property="og:description" content="Інтэрактыўныя заняткі з «Мовай Нанова» · Прэмія Гедройця · Гданьск, 7 лістапада 2026">
+<meta property="og:image" content="assets/img/og.png">
+<meta name="theme-color" content="#7C1313">
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/inter-tight-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/lora-cyrillic-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="ruchnik">
+
+<!-- Іконкі -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-people" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="15" r="6.5"/><path d="M5 41c0-7.5 5.8-13 13-13s13 5.5 13 13"/><circle cx="34" cy="17" r="5"/><path d="M31 28.4c1-.3 2-.4 3-.4 5.6 0 10 4.4 10 11"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="4" width="22" height="40" rx="5"/><path d="M21 37.5h6"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8.5v15L24.5 42 42 24.5 23.5 6h-15A2.5 2.5 0 0 0 6 8.5z"/><circle cx="15.5" cy="15.5" r="3"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"><path d="M22 5c1.6 9.4 5.2 13 14.6 14.6C27.2 21.2 23.6 24.8 22 34.2 20.4 24.8 16.8 21.2 7.4 19.6 16.8 18 20.4 14.4 22 5z"/><path d="M37 30c.7 4 2.2 5.5 6.2 6.2-4 .7-5.5 2.2-6.2 6.2-.7-4-2.2-5.5-6.2-6.2 4-.7 5.5-2.2 6.2-6.2z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="19"/><path d="M15 24.5l6 6 12-13"/></symbol>
+    <symbol id="i-book" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10c6.5-2.5 13-2 19 2v28c-6-4-12.5-4.5-19-2z"/><path d="M43 10c-6.5-2.5-13-2-19 2v28c6-4 12.5-4.5 19-2z"/></symbol>
+    <symbol id="i-laugh" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="19"/><path d="M14.5 27h19c-1.4 5.2-5 8-9.5 8s-8.1-2.8-9.5-8z"/><path d="M14.5 17.5l4.5 2.5-4.5 2.5M33.5 17.5L29 20l4.5 2.5"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4c2.5 8.5 13 12.5 13 25a13 13 0 0 1-26 0c0-5.5 2.6-9.3 5.4-12 .6 3.8 2.2 6 4.4 7C19.8 16.5 20.8 10 24 4z"/><path d="M24 44c-4 0-6.5-2.8-6.5-6.2 0-3.6 3-5.8 4.6-8.8 1.4 2.6 2.4 3.3 3.8 3.6-.2-1.7.3-3.4 1.3-4.6 1.9 2.6 3.3 5.2 3.3 8.5 0 4.2-2.7 7.5-6.5 7.5z"/></symbol>
+    <symbol id="i-sprout" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 44V22"/><path d="M24 27C24 18.5 18 13 8 13c0 9.5 6 14 16 14z"/><path d="M24 22c0-7.5 5.5-13 15-13 0 8.5-5.5 13-15 13z"/></symbol>
+    <symbol id="i-mask" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7c6.5 2.6 14.5 2.6 21 0v13.5C25 27 20.3 32 14.5 32S4 27 4 20.5z"/><path d="M9.5 15.5h3.5M16 15.5h3.5M9.5 22.5c2.8 2.8 7.2 2.8 10 0"/><path d="M29.5 17.5c4.6 1.7 9.9 1.7 14.5 0V30c0 6-4.7 11-10.5 11-3.2 0-6-1.5-8-3.8"/><path d="M33 24.5h3M38.5 24.5h3M33 33.8c2.4-2.2 6.1-2.2 8.5 0"/></symbol>
+    <symbol id="i-file" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4h16l10 10v28a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M28 4v10h10M17 21h7M17 28h14M17 35h14"/></symbol>
+    <symbol id="i-image" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="38" height="32" rx="5"/><circle cx="16.5" cy="18.5" r="3.5"/><path d="M5 34l11-10 9 8 6-5 12 10"/></symbol>
+    <symbol id="i-download" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6v25M14 21l10 10 10-10M8 41h32"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 32L32 16M18 16h14v14"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9h30a4 4 0 0 1 4 4v17a4 4 0 0 1-4 4H23l-9 7v-7H9a4 4 0 0 1-4-4V13a4 4 0 0 1 4-4z"/><path d="M15 19.5h18M15 25.5h11"/></symbol>
+    <symbol id="i-mortar" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 23h34l-3.6 14.5A5 5 0 0 1 32.6 41H15.4a5 5 0 0 1-4.8-3.5z"/><path d="M26.5 23L38 6"/><circle cx="39" cy="5.5" r="2.8"/><path d="M14 45h20"/></symbol>
+    <symbol id="i-needle" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 42L33 15"/><path d="M33 15l4.5-4.5a3.2 3.2 0 0 0-4.5-4.5L28.5 10.5"/><path d="M35.5 8.5c6 1 8.5 6 5 10.5-3.2 4-10.5 3-13 8.5-2 4.4 1 9 6 10.5"/></symbol>
+    <symbol id="i-tg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M43 7L5 21.5l12.5 4.5L22 39l7.2-8.4L39 38z"/><path d="M17.5 26L36 13 22 39"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="36" height="36" rx="11"/><circle cx="24" cy="24" r="8"/><circle cx="34.5" cy="13.5" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 30 42" fill="currentColor" shape-rendering="crispEdges"><path d="M14 0h14v2h-2v2h-2v2h-2v2h-2v2h-2v2h10v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2H4v-2h2v-2h2v-2h2v-2h2v-2h2v-2h2v-2H4v-2h2v-2h2v-2h2v-2h2V8h2V6h2V4h-2V2h-2z"/></symbol>
+  </defs>
+</svg>
+
+<div class="viewport">
+<div class="deck">
+
+<!-- ============================ 1. ТЫТУЛ ============================ -->
+<section class="slide s-title" data-theme="ruchnik" data-speaker="Эмілія і Аляксей" data-title="Тытул">
+  <div class="orn-band orn-top r"></div>
+  <div class="inner">
+    <div>
+      <p class="eyebrow r">Прэмія Гедройця · Гданьск · 7 лістапада</p>
+      <h1 class="h1 r" style="font-size:140px">Ці ўмее ШІ лаяцца <span class="nowrap">па-беларуску?</span></h1>
+      <p class="h2 accent r mt" style="font-size:112px">А вы?</p>
+      <div class="row r mt" style="align-items:center;gap:28px">
+        <span class="chip">18+</span>
+        <span class="who">Эмілія Гаўрус <span class="dot"></span> Аляксей Картыннік</span>
+      </div>
+    </div>
+    <img class="logo r" src="assets/img/logo.png" alt="Мова Нанова Уроцлаў" style="--d:1">
+  </div>
+  <div class="orn-band orn-bottom r"></div>
+  <aside class="notes">Вітаемся. Інтэрактыўныя заняткі «Мовы Нанова»: спачатку Эмілія распавядае пра беларускую лаянку і праклёны, потым Аляксей — практыка з ChatGPT. Папярэдзіць: будуць скаромныя словы, 18+.</aside>
+</section>
+
+<!-- ============================ 2. ВЯДОЎЦЫ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія і Аляксей" data-title="Вядоўцы">
+  <div class="split" style="grid-template-columns: 1fr 860px">
+    <div>
+      <p class="eyebrow r">Вядоўцы</p>
+      <h2 class="h2 r" style="font-size:84px">Сёння з вамі лаюцца</h2>
+      <div class="mt-l r">
+        <p class="h3" style="font-size:54px">Эмілія Гаўрус</p>
+        <p class="body mt-s" style="font-size:34px">грамадская дзяячка, папулярызатарка беларускай мовы, блогерка</p>
+      </div>
+      <div class="mt r">
+        <p class="h3" style="font-size:54px">Аляксей Картыннік</p>
+        <p class="small accent" style="font-weight:700;margin-top:6px">aka АйЦіБарада</p>
+        <p class="body mt-s" style="font-size:34px">праграміст, блогер, даследчык штучнага інтэлекту</p>
+      </div>
+    </div>
+    <div class="r" style="--d:1">
+      <img class="photo" src="assets/img/vyadouczy.jpg" alt="Аляксей Картыннік і Эмілія Гаўрус" style="width:100%">
+    </div>
+  </div>
+  <aside class="notes">Коратка прадстаўляемся.</aside>
+</section>
+
+<!-- ============================ 3. МОВА НАНОВА ============================ -->
+<section class="slide s-about" data-theme="light" data-speaker="Эмілія" data-title="Мова Нанова">
+  <div class="inner">
+    <img class="logo r" src="assets/img/logo.png" alt="Мова Нанова Уроцлаў">
+    <div>
+      <p class="eyebrow r">Хто мы</p>
+      <h2 class="h1 r">Мова Нанова</h2>
+      <p class="lead r mt">Бясплатныя курсы<span class="q">(?)</span> беларускай мовы</p>
+      <div class="stats mt-l">
+        <div class="stat r"><div class="num">2014</div><div class="lbl">існуем са студзеня 2014&nbsp;года</div></div>
+        <div class="stat r"><div class="num">2022</div><div class="lbl">ва Ўроцлаве</div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Пра «Мову Нанова»: бясплатныя курсы (са знакам пытання — можна пажартаваць, ці курсы гэта). Са студзеня 2014 года, ва Ўроцлаве — з 2022.</aside>
+</section>
+
+<!-- ============================ 5. ПЫТАННЕ ============================ -->
+<section class="slide s-question" data-theme="light" data-speaker="Эмілія" data-title="Памылка">
+  <div class="qmark" aria-hidden="true">?</div>
+  <p class="eyebrow r">Пытанне да залы</p>
+  <h2 class="h1 r" style="font-size:108px">Самая распаўсюджаная памылка сярод слухачоў і&nbsp;выкладчыкаў «Мовы&nbsp;Нанова»</h2>
+  <aside class="notes">Спытаць залу: як думаеце, якая? Даць некалькі варыянтаў. Падказка: яна ёсць нават у нашым анонсе (і ў паведамленнях саміх вядоўцаў). Далей — сюрпрайз.</aside>
+</section>
+
+<!-- ============================ 6. ЗАНЯТАК / ЗАНЯТКІ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Занятак і заняткі">
+  <div class="sticker b">Сюрпрайз-сюрпрайз!</div>
+  <p class="eyebrow r">Адказ</p>
+  <h2 class="h2 r">Занятак і заняткі</h2>
+  <div class="versus mt">
+    <div class="card r">
+      <div class="word">занятак</div>
+      <div class="gram">адзіночны лік</div>
+      <div class="def">Дзейнасць, якой нехта заняты: яго ці яе справы або праца.</div>
+      <div class="ex"><span>капаць зямлю</span><span>пісаць ліст</span><span>будаваць дом</span></div>
+    </div>
+    <div class="card r">
+      <div class="word">заняткі</div>
+      <div class="gram">множны лік</div>
+      <div class="def">Вучэбныя гадзіны ці ўвогуле час вучэння.</div>
+      <div class="ex"><span>урок</span><span>лекцыя</span><span>семінар</span></div>
+    </div>
+  </div>
+  <p class="body b mt">Тое, што мы робім у хаце, на падворку, у агародзе ці на працы, — <strong>занятак</strong>. А&nbsp;тое, што наведваюць вучні ці студэнты, — <strong>заняткі</strong>. Дык мы з вамі сёння — <span class="accent" style="font-weight:700">на занятках</span>.</p>
+  <aside class="notes">Клік 1 — наклейка «Сюрпрайз-сюрпрайз!». Клік 2 — высновы. Адзін урок — гэта ўсё роўна «заняткі», а не «занятак».</aside>
+</section>
+
+<!-- ============================ 7. БАРАДУЛІН ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Барадулін">
+  <div class="split" style="grid-template-columns: 1fr 860px">
+    <div>
+      <p class="eyebrow r">Даследчыкі</p>
+      <h2 class="h1 r">Рыгор Барадулін</h2>
+      <p class="lead r mt">першы спецыяліст у скаромнай мове ў сучаснай Беларусі</p>
+      <p class="body r mt-l">Аўтар <span class="serif it fg">«Вушацкага словазбора»</span> — зборніка жывой мовы роднай Вушаччыны з усімі яе скаромнымі словамі.</p>
+    </div>
+    <div class="row r" style="gap:32px;align-items:center;--d:1">
+      <img class="photo" src="assets/img/baradulin-book.jpg" alt="Вокладка «Вушацкі словазбор Рыгора Барадуліна»" style="height:660px;width:auto;transform:rotate(-2.5deg)">
+      <img class="photo" src="assets/img/baradulin.jpg" alt="Рыгор Барадулін з катом" style="height:660px;width:auto;transform:rotate(1.5deg) translateY(30px)">
+    </div>
+  </div>
+  <aside class="notes">Рыгор Барадулін — першы спецыяліст у скаромнай мове ў сучаснай Беларусі. «Вушацкі словазбор Рыгора Барадуліна».</aside>
+</section>
+
+<!-- ============================ 8. СКАРОМНЫ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Скаромны">
+  <div class="entry">
+    <div class="r"><span class="hw">скаро́мны</span><span class="gram">прым.</span></div>
+    <div class="sense r">
+      <div class="n">1.</div>
+      <div>
+        <div class="lbl">устарэлае</div>
+        <div class="d">Паводле рэлігійных прадпісанняў — забаронены ў час посту (пра мяса, сала, малако). <span class="it serif" style="color:var(--ink-2)">Скаромная ежа.</span></div>
+        <div class="x">Ты, можа, скаромнага не будзеш есці, Аўдоля, напэўна ж посціш, то мо табе гуркоў з расолам прынесці? <span class="src">Чарнышэвіч</span></div>
+      </div>
+    </div>
+    <div class="sense hot b">
+      <div class="n">2.</div>
+      <div>
+        <div class="lbl">пераноснае, размоўнае</div>
+        <div class="d">Непрыстойны.</div>
+        <div class="x">Скаромны анекдот.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Адкуль слова «скаромны». Першае значэнне — пра ежу ў пост. Клік — другое значэнне: «непрыстойны». Вось пра гэта і будзе размова.</aside>
+</section>
+
+<!-- ============================ 9. НАКОЛЬКІ ВЫВУЧАНА ============================ -->
+<section class="slide" data-theme="dark" data-speaker="Эмілія" data-title="Наколькі вывучана?">
+  <div class="col center" style="height:100%">
+    <p class="eyebrow r">Пытанне</p>
+    <h2 class="h1 r" style="max-width:1400px">Наколькі добра сёння вывучаная гэтая тэма?</h2>
+  </div>
+  <aside class="notes">Спытаць залу. Адказ — на наступным слайдзе.</aside>
+</section>
+
+<!-- ============================ 10. XV СТАГОДДЗЕ ============================ -->
+<section class="slide s-xv" data-theme="dark" data-speaker="Эмілія" data-title="XV стагоддзе">
+  <div class="hero">
+    <div class="xv r">XV</div>
+    <div>
+      <p class="eyebrow r">стагоддзе</p>
+      <p class="lead r" style="color:var(--fg);font-size:56px">Даследчыкі старабеларускай мовы фіксуюць ужыванне ненарматыўнай і вульгарнай лексікі ўжо ў XV стагоддзі.</p>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="node on r"><div class="y">XV ст.</div><div class="t">старабеларуская мова</div></div>
+    <div class="node r"><div class="y">1870–1906</div><div class="t">слоўнік Язэпа Ціхінскага</div></div>
+    <div class="node r"><div class="y">1983</div><div class="t">«Слоўнічак» Янкі Золака</div></div>
+    <div class="node r"><div class="y">Нашы дні</div><div class="t">Барадулін, Гарбацкі</div></div>
+  </div>
+  <aside class="notes">Тэма даследаваная даўжэй, чым здаецца: ужо ў XV стагоддзі. Далей — пра збіральнікаў па чарзе.</aside>
+</section>
+
+<!-- ============================ 11. ЦІХІНСКІ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Ціхінскі">
+  <div class="split">
+    <div>
+      <p class="eyebrow r">1842 – 1922?</p>
+      <h2 class="h1 r">Язэп Ціхінскі</h2>
+      <p class="lead r mt">беларускі лексікограф</p>
+      <p class="body r mt">У ягоным слоўніку пададзеныя шматлікія вульгарызмы і абразлівая лексіка.</p>
+    </div>
+    <div class="r" style="--d:1;padding:0 40px">
+      <div class="manuscript">
+        <div class="title">Беларуска-польска-расійскі слоўнік</div>
+        <div class="years">1870–1906</div>
+        <div class="lines"><i></i><i style="width:86%"></i><i style="width:92%"></i><i style="width:64%"></i></div>
+        <div class="stamp b">Дасюль<br>не выдадзены</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Язэп Ціхінскі, слоўнік збіраў 36 гадоў. Клік — штамп: слоўнік дасюль не выдадзены.</aside>
+</section>
+
+<!-- ============================ 12. ЗОЛАК ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Золак">
+  <div class="split" style="grid-template-columns: 560px 1fr">
+    <img class="photo portrait-bw r" src="assets/img/zolak.jpg" alt="Янка Золак" style="height:760px;width:auto">
+    <div>
+      <p class="eyebrow r">Эміграцыя · ЗША</p>
+      <h2 class="h1 r">Янка Золак</h2>
+      <p class="lead r mt">беларускі паэт у эміграцыі ў ЗША, выдаў <span class="serif it fg">«Слоўнічак пазаслоўнікавых слоў»</span></p>
+      <p class="small r mt">Сапраўднае імя — Антон Даніловіч</p>
+    </div>
+  </div>
+  <aside class="notes">Янка Золак — паэт беларускай эміграцыі ў ЗША.</aside>
+</section>
+
+<!-- ============================ 13. СЛОЎНІЧАК ============================ -->
+<section class="slide" data-theme="dark" data-speaker="Эмілія" data-title="Слоўнічак Золака">
+  <div class="split" style="grid-template-columns: 1fr 760px">
+    <div>
+      <p class="eyebrow r">Рарытэт</p>
+      <h2 class="h2 r">«Слоўнічак пазаслоўнікавых слоў»</h2>
+      <p class="body r mt-s">South River, New Jersey</p>
+      <div class="biblio mt-l">
+        <div class="line r"><b>1983</b> год выдання</div>
+        <div class="line r"><b>16</b> старонак</div>
+        <div class="line r"><b>11</b> асобнікаў накладу</div>
+      </div>
+    </div>
+    <div class="scan-wrap r" style="--d:1"><img class="scan" src="assets/img/zolak-slounicak.jpg" alt="Старонка «Слоўнічка пазаслоўнікавых слоў»"></div>
+  </div>
+  <aside class="notes">Наклад — 11 асобнікаў! Можна паказаць на скане некалькі словаў (абасраць, бздун і г.д.).</aside>
+</section>
+
+<!-- ============================ 14. ГАРБАЦКІ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Гарбацкі">
+  <div class="split" style="grid-template-columns: 860px 1fr">
+    <img class="photo r" src="assets/img/harbacki.jpg" alt="Уладзіслаў Гарбацкі" style="width:100%">
+    <div>
+      <p class="eyebrow r">Сацыялінгвіст</p>
+      <h2 class="h1 r">Уладзіслаў Гарбацкі</h2>
+      <p class="lead r mt">даследчык беларускай лаянкі, укладальнік слоўніка скаромных словаў</p>
+    </div>
+  </div>
+  <aside class="notes">Уладзіслаў Гарбацкі — сацыялінгвіст, укладальнік слоўніка скаромных словаў.</aside>
+</section>
+
+<!-- ============================ 15. РЭГІЯНАЛЬНЫЯ СЛОВЫ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Віцебск, Полацк, Орша">
+  <p class="eyebrow r">Віцебск · Полацк · каля Оршы</p>
+  <h2 class="h2 r" style="font-size:76px">Зафіксаваныя вульгарызмы і сексуалізмы</h2>
+  <div class="wcards mt">
+    <div class="wcard r"><div class="w">падрэз</div><div class="m">п’янка, гулянка, оргія</div></div>
+    <div class="wcard r"><div class="w">качалка</div><div class="m">прастытутка</div></div>
+    <div class="wcard r"><div class="w">прасушка</div><div class="m">манера сядзення многіх мужчын у публічным месцы, асабліва ў транспарце — <q>кавёлы раскярэчыўшы</q></div></div>
+  </div>
+  <div class="mt b">
+    <p class="small upper" style="letter-spacing:.14em;font-weight:700;color:var(--fg);margin-bottom:20px">Абазначэнне сексу</p>
+    <div class="pills"><span class="pill">шлыхацца</span><span class="pill">смунічыць</span><span class="pill">смунічыцца</span><span class="pill">маслычыцца</span></div>
+  </div>
+  <aside class="notes">Прыклады з Віцебшчыны. Клік — словы для абазначэння сексу.</aside>
+</section>
+
+<!-- ============================ 16. ПЛОЦЕВАСЦЬ ============================ -->
+<section class="slide" data-theme="red" data-speaker="Эмілія" data-title="Плоцевасць і сексуальнасць">
+  <h2 class="h1 r" style="font-size:112px;max-width:1500px">Беларуская абразлівая лексіка звязана пераважна з плоцевасцю і з сексуальнасцю.</h2>
+  <p class="lead r mt-l" style="font-size:54px">У меншай ступені — з жывёльным ці раслінным светам.</p>
+  <aside class="notes">Галоўная выснова пра характар беларускай лаянкі.</aside>
+</section>
+
+<!-- ============================ 17. ЦЕЛА ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Абразы пра цела">
+  <p class="eyebrow r">Большасць абразаў звязана з целам</p>
+  <div class="cloud r">
+    <span>пердуллё</span><span class="s2">дупяр</span><span class="s3">шм<span class="cens">*</span>ня</span><span>бздзюль</span><span class="s2">вылупак</span><span class="s3">высерак</span>
+    <span class="s2">выб<span class="cens">**</span>дак</span><span>выпердак</span><span class="hl">варзопа</span><span class="s3">загавайла</span><span class="hl">штыкля</span><span class="hl s2">раўгеша</span>
+  </div>
+  <div class="defs mt-l b">
+    <div><div class="w">варзопа</div><div class="m">паскуднік, паскудніца, вельмі брыдкі і брудны чалавек</div></div>
+    <div><div class="w">штыкля</div><div class="m">доўгі цыбаты чалавек</div></div>
+    <div><div class="w">раўгеша</div><div class="m">брудны і смярдзючы чалавек</div></div>
+  </div>
+  <aside class="notes">Прачытаць словы з залай. Клік — тлумачэнні трох менш відавочных.</aside>
+</section>
+
+<!-- ============================ 18. ЦЫТАТЫ ============================ -->
+<section class="slide" data-theme="dark" data-speaker="Эмілія" data-title="Барадулін і Золак: цытаты">
+  <p class="eyebrow r">Рыгор Барадулін і Янка Золак</p>
+  <p class="lead r" style="max-width:1500px">У сваіх тэкстах, дзякуючы ўжытым вульгарызмам і сексуалізмам, яны цудоўна апісалі багатую сексуальную спадчыну і сексуальны досвед беларусаў:</p>
+  <div class="quotes mt-l fade-prev">
+    <p class="quote b">«Кожнае дыханне любіць папіханне»</p>
+    <p class="quote b">«Пайшоў бы ў мніхі, дык яйцы ліхі»</p>
+    <p class="quote b">«Да работанькі — анінютанькі, а да ябатанькі — ах, мае матанькі!»</p>
+  </div>
+  <aside class="notes">Тры клікі — тры выразы.</aside>
+</section>
+
+<!-- ============================ 19. ЭЎФЕМІЗМЫ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Эўфемізмы">
+  <p class="eyebrow r">Сабралі этнографы</p>
+  <h2 class="h2 r">Эратызаваныя эўфемізмы</h2>
+  <div class="verses mt-l">
+    <div class="verse r">
+      <svg class="ico"><use href="#i-mortar"/></svg>
+      <p>Ой ты, мая Домна,<br>Прыйдзі ка мне цёмна.<br>Твая ступа, мой таўкач&nbsp;—<br>Будзем крупы абтаўкаць.</p>
+    </div>
+    <div class="verse r">
+      <svg class="ico"><use href="#i-needle"/></svg>
+      <p>Ай, такую яго маць,<br>Гэнага Міколку!<br>Я хацела яму даць,<br>А ў яго з іголку.</p>
+    </div>
+  </div>
+  <aside class="notes">Народныя прыпеўкі: усё сказана, нічога не названа.</aside>
+</section>
+
+<!-- ============================ 20. РАЗНАСТАЙНАСЦЬ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Разнастайнасць практык">
+  <p class="eyebrow r">Гісторыя і сучаснасць</p>
+  <p class="lead r" style="color:var(--fg);max-width:1560px">Як у гістарычнай, так і ў актуальнай перспектыве нецэнзурная, у тым ліку сексуальная, лексіка апісвае не толькі гетэрасексуальныя, але і гомасексуальныя ды іншыя практыкі і з’явы:</p>
+  <div class="terms mt">
+    <div class="term r"><div class="w">дупу драць</div><div class="m">займацца анальным сексам</div></div>
+    <div class="term r"><div class="w">дзюрасмок</div><div class="m">той, хто займаецца аральным сексам у публічных прыбіральнях</div></div>
+    <div class="term r"><div class="w">церці мужыкоў / хлопцаў</div><div class="m">мець за сексуальных партнёраў мужчын</div></div>
+  </div>
+  <p class="body b mt"><strong>У беларускай вульгарнай мове фіксуецца разнастайнасць сексуальных жаданняў і практык.</strong></p>
+  <aside class="notes">Клік — выснова.</aside>
+</section>
+
+<!-- ============================ 21. КУРВА ============================ -->
+<section class="slide s-kurva" data-theme="light" data-speaker="Эмілія" data-title="Курва">
+  <div class="big r">Курва<span class="q">— паланізм?</span></div>
+  <div class="grid-2 mt-l" style="gap:80px">
+    <div class="b">
+      <p class="h3 accent">Не зусім.</p>
+      <p class="body mt-s">Паводле даследчыкаў, слова ўзнікла ў старабеларускай мове ў той жа час, што і ў польскай. Яно актыўна ўжывалася ў нас — і часта ў варыянтах, якіх не ведала польская мова:</p>
+      <div class="pills mt-s"><span class="pill">курвель</span><span class="pill">курвёнак</span></div>
+    </div>
+    <div class="b">
+      <p class="h3">«Шлёндра»</p>
+      <p class="body mt-s">прыйшло адначасова ў польскую і ў старабеларускую мовы праз нямецкую.</p>
+      <div class="flow mt">
+        <div class="node src">нямецкая</div>
+        <div class="arrow"></div>
+        <div class="fork"><div class="node">польская</div><div class="node">старабеларуская</div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Спытаць залу: курва — паланізм? Клік — «Не зусім». Клік — «шлёндра».</aside>
+</section>
+
+<!-- ============================ 22. САМЫЯ МОЦНЫЯ ============================ -->
+<section class="slide s-strong" data-theme="dark" data-speaker="Эмілія" data-title="Самыя моцныя абразы">
+  <p class="eyebrow r">Самыя крыўдныя і моцныя абразы</p>
+  <div class="hero r">Шмоня<small>паслаць у шмоню</small></div>
+  <div class="list mt-l r">
+    <span>калток</span><span>гаўняр</span><span>дзюндзіла</span><span>ля<span class="cens">*</span>ва</span><span>абізгал</span>
+  </div>
+  <p class="lead b mt-l"><span class="serif it" style="color:var(--accent);font-weight:600">баба-гой</span> — мужыкаватая, непрыгожая баба</p>
+  <aside class="notes">Самыя моцныя. Клік — «баба-гой».</aside>
+</section>
+
+<!-- ============================ 23. ПРАКЛЁНЫ ============================ -->
+<section class="slide" data-theme="red" data-speaker="Эмілія" data-title="Праклёны">
+  <svg class="bolt" aria-hidden="true"><use href="#i-bolt"/></svg>
+  <p class="eyebrow r">Праклёны</p>
+  <h2 class="h2 r" style="max-width:1400px">Беларуская мова — адна з нямногіх моваў у Еўропе, дзе захаваліся моцныя праклёны.</h2>
+  <p class="lead r mt" style="max-width:1400px">У сваім пасланні кляцьбонікі (праклёны) нашмат страшнейшыя і мацнейшыя за звычайную лаянку.</p>
+  <div class="curses mt-l">
+    <p class="curse b"><span class="orn-motif"></span>Трасца табе ў бок!</p>
+    <p class="curse b"><span class="orn-motif"></span>Каб цябе пярун трэснуў!</p>
+    <p class="curse b"><span class="orn-motif"></span>Каб цябе халера ўзяла!</p>
+    <p class="curse b"><span class="orn-motif"></span>Каб ты скіс!</p>
+  </div>
+  <aside class="notes">Праклёны. Клікі — прыклады (можна папрасіць залу дадаць свае, бабуліны).</aside>
+</section>
+
+<!-- ============================ 24. СІТУАЦЫІ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Эмілія" data-title="Практыка: сітуацыі">
+  <p class="eyebrow r">Практыка</p>
+  <h2 class="h2 r">Што вы скажаце, калі…</h2>
+  <div class="situations mt">
+    <div class="situation b"><div class="n">01</div><div class="t">…вы чакаеце карту побыту ўжо паўтара года, а ўжонд паведаміў, што згубіў вашыя дакументы?</div></div>
+    <div class="situation b"><div class="n">02</div><div class="t">…вы прыйшлі на заняткі «Мова Нанова» дакладна а 12-й, як было напісана ў афішы, а непунктуальныя Эмілія і Лёша распачалі іх толькі а 13-й?</div></div>
+    <div class="situation b"><div class="n">03</div><div class="t">…вас папрасілі «разговарівать на нормальном языке»?</div></div>
+  </div>
+  <aside class="notes">Па адной сітуацыі на клік. Просім залу вылаяцца ці пракляць — з тым, што толькі што пачулі. Гэта мост да другой часткі.</aside>
+</section>
+
+<!-- ============================ 24a. ВІДЭА ============================ -->
+<section class="slide s-video" data-theme="dark" data-speaker="Эмілія" data-title="Відэа" data-hook="video">
+  <img class="video-bg" src="assets/video/video-bg.jpg" alt="" aria-hidden="true">
+  <div class="video-frame r" data-video>
+    <video src="assets/video/video.mp4" poster="assets/video/video-poster.jpg" playsinline preload="auto"></video>
+    <div class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 5.8v12.4L19 12z" fill="currentColor"/></svg></div>
+  </div>
+  <aside class="notes">Відэа запускаецца само, калі пераходзіце на слайд. Клік па відэа або K — паўза / зноў.</aside>
+</section>
+
+<!-- ============================ 25. ЧАСТКА 2 ============================ -->
+<section class="slide s-flag" data-theme="flag" data-speaker="Аляксей" data-title="Частка 2: Лаянка 2.0">
+  <div class="top">
+    <p class="who r"><span class="orn-motif" style="width:34px;height:34px;color:var(--red)"></span>Частка 2 · вядзе Аляксей «АйЦіБарада» Картыннік</p>
+  </div>
+  <div class="band">
+    <p class="eyebrow r" style="--d:1">Ці ўмее ШІ лаяцца па-беларуску?</p>
+    <h2 class="display r" style="--d:2">Лаянка 2.0</h2>
+  </div>
+  <div class="bottom">
+    <p class="lead r" style="--d:3">Правяраем — і ствараем новыя скаромныя словы разам са штучным інтэлектам.</p>
+  </div>
+  <aside class="notes">Пераход да практычнай часткі. Пытанне з назвы занятку: ці ўмее ШІ лаяцца па-беларуску? Зараз праверым.</aside>
+</section>
+
+<!-- ============================ 26. ГРУПЫ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Аляксей" data-title="Групы">
+  <p class="eyebrow r">Крок 1</p>
+  <h2 class="h1 r">Разбіваемся на групы</h2>
+  <div class="steps3 mt-l">
+    <div class="step r"><svg class="ico"><use href="#i-people"/></svg><div class="t">3–5 чалавек</div><div class="p">Аб’ядноўвайцеся з суседзямі. Пазнаёміцца можна і праз лаянку.</div></div>
+    <div class="step must r"><svg class="ico"><use href="#i-phone"/></svg><div class="t">Тэлефон з ChatGPT</div><div class="p">Мінімум адзін на групу. Хто ўвайшоў у акаўнт — той і пісар.</div><span class="tag">Абавязкова</span></div>
+    <div class="step r"><svg class="ico"><use href="#i-tag"/></svg><div class="t">Назва групы</div><div class="p">Першае заданне — прыдумаць яе. Можна скаромную.</div></div>
+  </div>
+  <aside class="notes">Даць хвіліну, каб разбіцца. Праверыць, што ў кожнай групе ёсць хтосьці з ChatGPT на тэлефоне.</aside>
+</section>
+
+<!-- ============================ 27. QR ============================ -->
+<section class="slide" data-theme="dark" data-speaker="Аляксей" data-title="QR-код ChatGPT">
+  <div class="split" style="grid-template-columns: 1fr 640px">
+    <div>
+      <p class="eyebrow r">Крок 2</p>
+      <h2 class="h1 r">Адкрывайце наш ChatGPT</h2>
+      <p class="lead r mt">Навядзіце камеру тэлефона на <span class="nowrap">QR-код</span> — і трапіце ў падрыхтаваны праект з інструкцыямі і прыкладамі беларускай лаянкі.</p>
+      <p class="link-text r mt-l" data-link></p>
+      <p class="small r mt-s">Трэба ўвайсці ў свой акаўнт ChatGPT</p>
+      <p class="warn r mt" data-config-warning>⚠ Спасылка не ўстаўлена — js/config.js</p>
+    </div>
+    <div class="qr-wrap r" style="--d:1"><div class="qr-card" data-qr></div></div>
+  </div>
+  <aside class="notes">Пачакаць, пакуль усе адскануюць. Калі ў кагосьці не адкрываецца — няхай далучаюцца да суседняй групы.</aside>
+</section>
+
+<!-- ============================ 28. ЗАДАЧА ============================ -->
+<section class="slide" data-theme="light" data-speaker="Аляксей" data-title="Задача">
+  <p class="eyebrow r">Крок 3 · Задача</p>
+  <h2 class="h1 r">Лаянка ў сцэнцы</h2>
+  <div class="steps3 mt-l">
+    <div class="step r"><svg class="ico"><use href="#i-chat"/></svg><div class="t">Сітуацыя</div><div class="p">Напішыце ў чат «Прывітанне» і прыдумайце сітуацыю, у якой хочацца вылаяцца.</div></div>
+    <div class="step r"><svg class="ico"><use href="#i-spark"/></svg><div class="t">10 слоў і 10 фраз</div><div class="p">ШІ згенеруе пад вашу сітуацыю новую лаянку з намёкам на сэнс. Бярыце 3–5.</div></div>
+    <div class="step r"><svg class="ico"><use href="#i-mask"/></svg><div class="t">Міні-сцэнка</div><div class="p">Разыграйце сцэнку на 1–2 хвіліны, дзе прагучыць усё абранае. Яго сэнс абвяшчаеце перад выступам.</div></div>
+  </div>
+  <aside class="notes">Бот сам растлумачыць задачу на «Прывітанне». Каманды ў чаце: яшчэ, мацней, мякчэй, бярэм 2, 7, 14 (1–10 — словы, 11–20 — фразы), сцэнка (каркас без рэплік), фінал (картка для выступу).</aside>
+</section>
+
+<!-- ============================ 29. ПРОМПТЫ ============================ -->
+<section class="slide" data-theme="dark" data-speaker="Аляксей" data-title="Ідэі сітуацый">
+  <p class="eyebrow r">Калі не ведаеце, з чаго пачаць</p>
+  <h2 class="h2 r">Сітуацыі, калі хочацца вылаяцца</h2>
+  <div class="prompts mt-l">
+    <div class="prompt r"><svg class="ico"><use href="#i-chat"/></svg><p>Ужонд згубіў вашыя дакументы на карту побыту</p></div>
+    <div class="prompt r"><svg class="ico"><use href="#i-chat"/></svg><p>Цягнік PKP спазніўся на тры гадзіны</p></div>
+    <div class="prompt r"><svg class="ico"><use href="#i-chat"/></svg><p>Сусед свідруе а 7-й раніцы ў нядзелю</p></div>
+    <div class="prompt r"><svg class="ico"><use href="#i-chat"/></svg><p>Калега піша „+“ у агульны чат і больш нічога не робіць</p></div>
+  </div>
+  <p class="body r mt">Няма ідэі — дашліце ў чат 🎲, і Скаромнік прапануе свае.</p>
+  <aside class="notes">Падказкі, калі група «завісла». Пасля гэтага — таймер.</aside>
+</section>
+
+<!-- ============================ 30. ТАЙМЕР ============================ -->
+<section class="slide s-timer" data-theme="dark" data-speaker="Аляксей" data-title="Таймер" data-hook="timer">
+  <div class="inner">
+    <div class="timer-side">
+      <p class="eyebrow r">Час пайшоў</p>
+      <h2 class="h1 r">Рыхтуем сцэнку</h2>
+      <p class="lead r mt">Сітуацыя → 3–5 слоў ці фраз → сцэнка. У вас <span data-timer-min>10</span>&nbsp;хвілін.</p>
+      <p class="small r mt-s">У чаце: яшчэ · мацней · мякчэй · бярэм 2, 7, 14 · сцэнка · фінал</p>
+      <div class="qr-row r">
+        <div class="qr-card qr-mini" data-qr></div>
+        <div><p class="small">Яшчэ не ў праекце?</p><p class="link-text mt-s" style="font-size:32px" data-link></p></div>
+      </div>
+    </div>
+    <div class="timer r" data-timer style="--d:1">
+      <svg viewBox="0 0 400 400" aria-hidden="true">
+        <circle class="track" cx="200" cy="200" r="184" fill="none" stroke-width="14"/>
+        <circle class="prog" cx="200" cy="200" r="184" fill="none" stroke-width="14"/>
+      </svg>
+      <div class="face"><div class="time">10:00</div><div class="hint">Націсніце, каб пачаць</div></div>
+    </div>
+  </div>
+  <aside class="notes">Першы клік / «далей» запускае таймер. Клік па таймеры — паўза. S — старт/паўза, R — скінуць, +/− — змяніць час. Калі час скончыцца, прагучыць сігнал.</aside>
+</section>
+
+<!-- ============================ 31. ПАДАРУНКІ ============================ -->
+<section class="slide" data-theme="light" data-speaker="Аляксей" data-title="Падарункі">
+  <p class="eyebrow r">Фінал</p>
+  <h2 class="h1 r">Падарункі атрымаюць…</h2>
+  <div class="prizes mt-l">
+    <div class="prize r"><svg class="ico"><use href="#i-laugh"/></svg><div class="t">Самае смешнае</div><div class="p">Ад чаго ўся зала ляжыць.</div></div>
+    <div class="prize r"><svg class="ico"><use href="#i-flame"/></svg><div class="t">Самае правакацыйнае</div><div class="p">Тое, што страшна сказаць уголас — але вельмі хочацца.</div></div>
+    <div class="prize r"><svg class="ico"><use href="#i-sprout"/></svg><div class="t">Самае жывое</div><div class="p">Тое, што пойдзе ў народ і застанецца ў мове.</div></div>
+  </div>
+  <div class="present-flow b mt-l">Кожная група: <i>сітуацыя</i> → <i>словы, фразы і іх сэнс</i> → <i>сцэнка 1–2 хв</i></div>
+  <aside class="notes">Клік — парадак выступу. Група спачатку абвяшчае сітуацыю і словы з сэнсам (картка «фінал» у чаце), потым грае сцэнку. Пераможцаў можна вызначыць апладысментамі залы.</aside>
+</section>
+
+<!-- ============================ 33. ВЕРДЫКТ ============================ -->
+<section class="slide" data-theme="dark" data-speaker="Аляксей" data-title="Вердыкт">
+  <p class="eyebrow r">Дык што, ці ўмее ШІ лаяцца па-беларуску?</p>
+  <p class="h1 b" style="font-size:150px">ШІ — вучыцца.</p>
+  <p class="h1 b accent mt" style="font-size:150px">А вы — ужо ўмееце.</p>
+  <aside class="notes">Падсумаванне: ШІ дапамагае, але жывая мова — за людзьмі.</aside>
+</section>
+
+<!-- ============================ 34. ДЗЯКУЙ ============================ -->
+<section class="slide s-final" data-theme="ruchnik" data-speaker="Эмілія і Аляксей" data-title="Дзякуй">
+  <div class="orn-band orn-top r"></div>
+  <div class="inner">
+    <img class="logo r" src="assets/img/logo.png" alt="Мова Нанова Уроцлаў">
+    <div>
+      <h2 class="display r">Дзякуй!</h2>
+      <p class="lead r mt">Сустракаемся на занятках «Мовы Нанова»</p>
+      <div class="social r mt-l">
+        <a href="https://t.me/movananovauro" target="_blank" rel="noopener" title="Telegram"><svg class="ic" style="color:var(--red)"><use href="#i-tg"/></svg></a>
+        <a href="https://www.instagram.com/movananovauro/" target="_blank" rel="noopener" title="Instagram"><svg class="ic" style="color:var(--red)"><use href="#i-ig"/></svg></a>
+        <span>@movananovauro</span>
+      </div>
+      <p class="small r mt-l">Эмілія Гаўрус · Аляксей «АйЦіБарада» Картыннік</p>
+    </div>
+  </div>
+  <div class="orn-band orn-bottom r"></div>
+  <aside class="notes">Дзякуем, запрашаем у Telegram і Instagram @movananovauro. Уручаем падарункі.</aside>
+</section>
+
+<!-- ============================ МАТЭРЫЯЛЫ ============================ -->
+<section class="slide s-materials" data-theme="light" data-id="materyjaly" data-speaker="Эмілія і Аляксей" data-title="Матэрыялы">
+  <p class="eyebrow r">Забірайце з сабой</p>
+  <h2 class="h2 r">Прэзентацыя, прампт і базы</h2>
+  <div class="grid mt">
+    <div class="r">
+      <div class="qr-card" data-qr="deckUrl"></div>
+      <p class="link-text mt" style="font-size:34px" data-link="deckUrl"></p>
+      <p class="small mt-s">Скануйце — прэзентацыя адкрыецца на тэлефоне якраз на гэтым слайдзе</p>
+    </div>
+    <div class="downloads">
+      <a class="dl r" href="assets/files/skaromnik.md" download="Скаромнік.md">
+        <svg class="ico"><use href="#i-file"/></svg>
+        <span><span class="t">Прампт Скаромніка</span><span class="s">інструкцыя для ChatGPT-праекта · MD</span></span>
+        <svg class="go"><use href="#i-download"/></svg>
+      </a>
+      <a class="dl r" href="assets/files/praklony.pdf" download="Праклёны.pdf">
+        <svg class="ico"><use href="#i-file"/></svg>
+        <span><span class="t">Праклёны і грозьбы</span><span class="s">база для праекта: Барадулін, Янкоўскі, Федароўскі · PDF</span></span>
+        <svg class="go"><use href="#i-download"/></svg>
+      </a>
+      <a class="dl r" href="assets/files/praklony-duncy.jpg" download="Праклёны з в. Дунцы.jpg">
+        <svg class="ico"><use href="#i-image"/></svg>
+        <span><span class="t">Як праклінаюць у Дунцах</span><span class="s">база для праекта: в. Дунцы, Любанскі раён · JPG</span></span>
+        <svg class="go"><use href="#i-download"/></svg>
+      </a>
+      <a class="dl r" href="https://bit.ly/4iuFR3B" target="_blank" rel="noopener">
+        <svg class="ico"><use href="#i-chat"/></svg>
+        <span><span class="t">Скаромнік у ChatGPT</span><span class="s">пагуляць яшчэ раз дома · bit.ly/4iuFR3B</span></span>
+        <svg class="go"><use href="#i-arrow"/></svg>
+      </a>
+    </div>
+  </div>
+  <aside class="notes">QR вядзе на гэты слайд прэзентацыі: з тэлефона можна адразу спампаваць прампт і базы.</aside>
+</section>
+
+</div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/vendor/qrcode.js"></script>
+<script src="js/deck.js"></script>
+</body>
+</html>
