@@ -5,7 +5,7 @@
 (() => {
   'use strict';
 
-  const CFG = Object.assign({ chatgptUrl: '', chatgptLabel: '', timerMinutes: 10 }, window.PRESA_CONFIG || {});
+  const CFG = Object.assign({ chatgptUrl: '', chatgptLabel: '', chatgptUrl2: '', chatgptLabel2: '', timerMinutes: 10 }, window.PRESA_CONFIG || {});
   const qs = new URLSearchParams(location.search);
   const STATIC = qs.has('static');        // без анімацый, усе крокі адразу (скрыншоты, друк)
   const PRESENTER = qs.has('presenter');  // акно выступоўцы
@@ -98,7 +98,12 @@
   addEventListener('hashchange', () => { const h = fromHash(); if (h !== null && h !== idx) go(h, 'all'); });
 
   /* ---------- Сінхранізацыя вокнаў (рэжым выступоўцы) ---------- */
-  const bc = 'BroadcastChannel' in window ? new BroadcastChannel('presa-sync') : null;
+  // Канал свой для кожнай прэзентацыі і яе версіі (адрас + набор слайдаў). Інакш іншая прэзентацыя
+  // з таго ж сайта ці забытая ўкладка са старой версіяй перагортваецца разам з гэтай.
+  let deckSig = 0;
+  for (const ch of slides.map(s => s.dataset.title || '').join('|')) deckSig = (deckSig * 31 + ch.codePointAt(0)) >>> 0;
+  const bc = 'BroadcastChannel' in window
+    ? new BroadcastChannel(`presa-sync:${location.pathname}:${slides.length}:${deckSig.toString(36)}`) : null;
   function broadcast() {
     if (!bc || applyingRemote) return;
     bc.postMessage({ t: 'state', idx, step, timer: timerState() });
@@ -223,7 +228,7 @@
   hooks.video = {
     enter() {
       const v = curVideo();
-      if (!v || STATIC) return;
+      if (!v || STATIC || document.hidden) return; // у фонавай укладцы відэа само не стартуе
       v.currentTime = 0;
       v.play().catch(() => { /* браўзер забараніў аўтазапуск — дапаможа клік */ });
     },
@@ -292,8 +297,10 @@
     return s;
   };
   function initLinks() {
-    // data-qr / data-link без значэння — спасылка на ChatGPT; data-qr="deckUrl" — на прэзентацыю
+    // data-qr / data-link без значэння — спасылка на першы праект ChatGPT; data-qr="chatgptUrl2" — на другі;
+    // data-qr="deckUrl" — на прэзентацыю
     const urlOf = (key) => (CFG[key || 'chatgptUrl'] || '').trim();
+    const labelOf = (key) => CFG[(key || 'chatgptUrl').replace(/Url(\d*)$/, 'Label$1')] || prettyUrl(urlOf(key));
     $$('[data-qr]').forEach(box => {
       const url = urlOf(box.dataset.qr);
       if (url && window.qrcode) box.innerHTML = qrSvg(url);
@@ -305,10 +312,13 @@
       if (!url) { n.textContent = 'спасылка яшчэ не ўстаўлена'; return; }
       n.innerHTML = '';
       const a = el('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener';
-      a.textContent = CFG[key.replace(/Url$/, 'Label')] || prettyUrl(url);
+      a.textContent = labelOf(key);
       n.appendChild(a);
     });
-    $$('[data-config-warning]').forEach(n => { n.hidden = !!urlOf('chatgptUrl'); });
+    // Карткі-спасылкі: data-href="ключ" бярэ адрас з канфіга; пакуль адраса няма, картка схаваная
+    $$('a[data-href]').forEach(a => { const url = urlOf(a.dataset.href); a.hidden = !url; if (url) a.href = url; });
+    $$('[data-label]').forEach(n => { if (urlOf(n.dataset.label)) n.textContent = labelOf(n.dataset.label); });
+    $$('[data-config-warning]').forEach(n => { n.hidden = !!urlOf(n.dataset.configWarning); });
     $$('[data-timer-min]').forEach(n => { n.textContent = Math.round(T.total / 60); });
   }
 

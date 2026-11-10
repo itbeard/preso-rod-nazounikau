@@ -430,19 +430,32 @@
 </section>
 
 <!-- ============================ 25. QR ============================ -->
-<section class="slide" data-theme="dark" data-speaker="Аляксей" data-title="QR-код ChatGPT">
-  <div class="split" style="grid-template-columns: 1fr 640px">
+<section class="slide s-qr2" data-theme="dark" data-speaker="Аляксей" data-title="QR-коды ChatGPT">
+  <p class="eyebrow r">Крок 2</p>
+  <h2 class="h1 r" style="font-size:108px">Адкрывайце наш ChatGPT</h2>
+  <div class="qr2 mt">
     <div>
-      <p class="eyebrow r">Крок 2</p>
-      <h2 class="h1 r">Адкрывайце наш ChatGPT</h2>
-      <p class="lead r mt">Навядзіце камеру тэлефона на <span class="nowrap">QR-код</span> — і трапіце ў падрыхтаваны праект з інструкцыямі і прыкладамі беларускай лаянкі.</p>
-      <p class="link-text r mt-l" data-link></p>
-      <p class="small r mt-s">Трэба ўвайсці ў свой акаўнт ChatGPT</p>
-      <p class="warn r mt" data-config-warning>⚠ Спасылка не ўстаўлена — js/config.js</p>
+      <p class="lead r" style="font-size:42px">Навядзіце камеру тэлефона на любы з двух <span class="nowrap">QR-кодаў</span>: праекты аднолькавыя.</p>
+      <ul class="qr2-notes">
+        <li class="r"><strong>У кожным праекце — 10 месцаў.</strong> Не атрымалася зайсці? Далучайцеся да групы, якая ўжо ў праекце.</li>
+        <li class="r"><strong>Чаты не прыватныя:</strong> іх змест бачаць іншыя ўдзельнікі праекта.</li>
+        <li class="r">Трэба ўвайсці ў свой акаўнт ChatGPT.</li>
+      </ul>
+      <p class="warn r mt-s" data-config-warning>⚠ Спасылка на праект 1 не ўстаўлена — js/config.js</p>
+      <p class="warn r mt-s" data-config-warning="chatgptUrl2">⚠ Спасылка на праект 2 не ўстаўлена — js/config.js</p>
     </div>
-    <div class="qr-wrap r" style="--d:1"><div class="qr-card" data-qr></div></div>
+    <div class="qr2-code r">
+      <p class="qr2-label">Праект 1</p>
+      <div class="qr-card" data-qr></div>
+      <p class="link-text" data-link></p>
+    </div>
+    <div class="qr2-code r">
+      <p class="qr2-label">Праект 2</p>
+      <div class="qr-card" data-qr="chatgptUrl2"></div>
+      <p class="link-text" data-link="chatgptUrl2"></p>
+    </div>
   </div>
-  <aside class="notes">Пачакаць, пакуль усе адскануюць. Калі ў кагосьці не адкрываецца — няхай далучаюцца да суседняй групы.</aside>
+  <aside class="notes">Два аднолькавыя праекты: у адзін можна далучыць толькі 10 чалавек, разам 20 месцаў. Пачакаць, пакуль усе адскануюць. Хто не змог зайсці — няхай далучаецца да групы, якая ўжо ў праекце. Папярэдзіць: чаты ў праекце не прыватныя, іх бачаць іншыя ўдзельнікі.</aside>
 </section>
 
 <!-- ============================ 26. ЗАДАЧА ============================ -->
@@ -481,7 +494,8 @@
       <p class="small r mt-s">У чаце: яшчэ · мацней · мякчэй · бярэм 2, 7, 14 · сцэнка · фінал</p>
       <div class="qr-row r">
         <div class="qr-card qr-mini" data-qr></div>
-        <div><p class="small">Яшчэ не ў праекце?</p><p class="link-text mt-s" style="font-size:32px" data-link></p></div>
+        <div class="qr-card qr-mini" data-qr="chatgptUrl2"></div>
+        <div><p class="small">Яшчэ не ў праекце?</p><p class="link-text mt-s" style="font-size:30px" data-link></p><p class="link-text" style="font-size:30px;margin-top:10px" data-link="chatgptUrl2"></p></div>
       </div>
     </div>
     <div class="timer r" data-timer style="--d:1">
@@ -561,11 +575,18 @@
         <span><span class="t">Як праклінаюць у Дунцах</span><span class="s">база для праекта: в. Дунцы, Любанскі раён · JPG</span></span>
         <svg class="go"><use href="#i-download"/></svg>
       </a>
-      <a class="dl r" href="https://bit.ly/4iuFR3B" target="_blank" rel="noopener">
-        <svg class="ico"><use href="#i-chat"/></svg>
-        <span><span class="t">Скаромнік у ChatGPT</span><span class="s">пагуляць яшчэ раз дома · bit.ly/4iuFR3B</span></span>
-        <svg class="go"><use href="#i-arrow"/></svg>
-      </a>
+      <div class="dl-pair">
+        <a class="dl r" data-href="chatgptUrl" target="_blank" rel="noopener">
+          <svg class="ico"><use href="#i-chat"/></svg>
+          <span><span class="t">Скаромнік 1</span><span class="s">ChatGPT · <span data-label="chatgptUrl"></span></span></span>
+          <svg class="go"><use href="#i-arrow"/></svg>
+        </a>
+        <a class="dl r" data-href="chatgptUrl2" target="_blank" rel="noopener">
+          <svg class="ico"><use href="#i-chat"/></svg>
+          <span><span class="t">Скаромнік 2</span><span class="s">ChatGPT · <span data-label="chatgptUrl2"></span></span></span>
+          <svg class="go"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
     </div>
   </div>
   <aside class="notes">QR вядзе на гэты слайд прэзентацыі: з тэлефона можна адразу спампаваць прампт і базы.</aside>
