@@ -1,11 +1,11 @@
 /* ==========================================================================
    Рухавічок прэзентацыі: навігацыя, крокі (builds), агляд, нататкі,
-   рэжым выступоўцы, таймер, QR і жывы слоўнічак.
+   рэжым выступоўцы, слайд-шоў і QR.
    ========================================================================== */
 (() => {
   'use strict';
 
-  const CFG = Object.assign({ chatgptUrl: '', chatgptLabel: '', chatgptUrl2: '', chatgptLabel2: '', timerMinutes: 10 }, window.PRESA_CONFIG || {});
+  const CFG = Object.assign({ deckUrl: '', deckLabel: '' }, window.PRESA_CONFIG || {});
   const qs = new URLSearchParams(location.search);
   const STATIC = qs.has('static');        // без анімацый, усе крокі адразу (скрыншоты, друк)
   const PRESENTER = qs.has('presenter');  // акно выступоўцы
@@ -92,7 +92,7 @@
     const h = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
     if (!h) return null;
     if (/^\d+$/.test(h)) return clamp(parseInt(h, 10) - 1, 0, slides.length - 1);
-    const i = slides.findIndex(s => s.dataset.id === h); // напр. #materyjaly
+    const i = slides.findIndex(s => s.dataset.id === h); // слайд з data-id="назва" адкрываецца як #назва
     return i >= 0 ? i : null;
   }
   addEventListener('hashchange', () => { const h = fromHash(); if (h !== null && h !== idx) go(h, 'all'); });
@@ -106,7 +106,7 @@
     ? new BroadcastChannel(`presa-sync:${location.pathname}:${slides.length}:${deckSig.toString(36)}`) : null;
   function broadcast() {
     if (!bc || applyingRemote) return;
-    bc.postMessage({ t: 'state', idx, step, timer: timerState() });
+    bc.postMessage({ t: 'state', idx, step });
   }
   if (bc) {
     bc.onmessage = (e) => {
@@ -116,7 +116,6 @@
       if (m.t !== 'state') return;
       applyingRemote = true;
       try {
-        if (m.timer) applyTimerState(m.timer);
         if (m.idx !== idx || m.step !== step) {
           const changed = m.idx !== idx;
           if (changed) hook(idx, 'leave');
@@ -129,133 +128,33 @@
     };
   }
 
-  /* ---------- Таймер ---------- */
-  const T = { total: Math.round(CFG.timerMinutes * 60), remaining: Math.round(CFG.timerMinutes * 60), running: false, endAt: 0, done: false, int: 0 };
-  const tLeft = () => T.running ? Math.max(0, (T.endAt - Date.now()) / 1000) : T.remaining;
-  const timerState = () => ({ total: T.total, remaining: tLeft(), running: T.running, endAt: T.endAt, done: T.done });
-  function applyTimerState(s) {
-    Object.assign(T, { total: s.total, remaining: s.remaining, running: s.running, endAt: s.endAt, done: s.done });
-    if (T.running) tLoop(); else clearInterval(T.int);
-    tRender();
-  }
-  function tStart() {
-    if (T.running) return;
-    if (T.remaining <= 0) { T.remaining = T.total; }
-    T.endAt = Date.now() + T.remaining * 1000; T.running = true; T.done = false;
-    tLoop(); tRender(); broadcast();
-  }
-  function tPause() { if (!T.running) return; T.remaining = tLeft(); T.running = false; clearInterval(T.int); tRender(); broadcast(); }
-  function tToggle() { T.running ? tPause() : tStart(); }
-  function tReset() { T.running = false; T.remaining = T.total; T.done = false; clearInterval(T.int); tRender(); broadcast(); }
-  function tAdjust(min) {
-    if (T.running) return;
-    T.total = clamp(T.total + min * 60, 60, 90 * 60); T.remaining = T.total; T.done = false;
-    tRender(); broadcast();
-  }
-  function tLoop() {
-    clearInterval(T.int);
-    T.int = setInterval(() => {
-      if (T.running && tLeft() <= 0) {
-        T.running = false; T.remaining = 0; T.done = true; clearInterval(T.int);
-        if (!PRESENTER) chime();
-      }
-      tRender();
-    }, 200);
-  }
-  function fmt(sec) { const s = Math.ceil(sec); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }
-  function tRender() {
-    const left = tLeft();
-    $$('[data-timer]').forEach(box => {
-      const ring = $('.prog', box);
-      if (ring) {
-        const c = 2 * Math.PI * ring.r.baseVal.value;
-        ring.style.strokeDasharray = c;
-        ring.style.strokeDashoffset = c * (1 - (T.total ? left / T.total : 0));
-      }
-      $('.time', box).textContent = fmt(left);
-      const hint = $('.hint', box);
-      if (hint) hint.textContent = T.done ? 'Час! Абіраем лепшае' : T.running ? 'Генеруем…' : (left === T.total ? 'Націсніце, каб пачаць' : 'Паўза');
-      box.classList.toggle('done', T.done);
-      box.classList.toggle('running', T.running);
-    });
-  }
-  function chime() {
-    try {
-      const ac = new (window.AudioContext || window.webkitAudioContext)();
-      [0, 0.32, 0.64, 1.1].forEach((t, i) => {
-        const o = ac.createOscillator(), g = ac.createGain();
-        o.type = 'sine'; o.frequency.value = i === 3 ? 1175 : 880;
-        const at = ac.currentTime + t;
-        g.gain.setValueAtTime(0.0001, at);
-        g.gain.exponentialRampToValueAtTime(0.35, at + 0.02);
-        g.gain.exponentialRampToValueAtTime(0.0001, at + (i === 3 ? 0.9 : 0.28));
-        o.connect(g).connect(ac.destination); o.start(at); o.stop(at + 1);
-      });
-    } catch (e) { /* без гуку */ }
-  }
-  hooks.timer = {
-    // Першае націсканне «далей» на слайдзе таймера запускае яго.
-    next() {
-      if (STATIC) return false;
-      if (!T.running && !T.done && T.remaining === T.total) { tStart(); return true; }
-      return false;
-    },
-  };
-  document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-timer]');
-    if (t && !t.closest('.pv-next')) { e.stopPropagation(); tToggle(); }
-  }, true);
-
-  /* ---------- Відэа ---------- */
-  // Запускаецца пры ўваходзе на слайд, спыняецца пры выхадзе. Клік па відэа або K — паўза.
-  const curVideo = () => $('[data-video] video', slides[idx]);
-  function toggleVideo(v = curVideo()) {
-    if (!v) return;
-    if (v.paused) { if (v.ended) v.currentTime = 0; v.play().catch(() => {}); } else v.pause();
-  }
-  $$('[data-video]').forEach(box => {
-    const v = $('video', box);
-    if (PRESENTER) v.muted = true; // каб гук не ішоў з двух вокнаў
-    const sync = () => box.classList.toggle('paused', v.paused);
-    ['play', 'pause', 'ended'].forEach(ev => v.addEventListener(ev, sync));
-    sync();
-    box.addEventListener('click', (e) => {
-      if (document.body.classList.contains('overview')) return;
-      e.stopPropagation();
-      toggleVideo(v);
-    });
-  });
-  hooks.video = {
-    enter() {
-      const v = curVideo();
-      if (!v || STATIC || document.hidden) return; // у фонавай укладцы відэа само не стартуе
-      v.currentTime = 0;
-      v.play().catch(() => { /* браўзер забараніў аўтазапуск — дапаможа клік */ });
-    },
-    leave() { const v = curVideo(); if (v) v.pause(); },
-  };
-
   /* ---------- Слайд-шоў ---------- */
-  // Здымкі ў [data-slideshow] мяняюцца самі кожныя data-interval мс, пакуль слайд на экране.
+  // Кадры ў [data-slideshow] мяняюцца самі кожныя data-interval мс, пакуль слайд на экране.
+  // Кадр — гэта дзіця [data-slideshow]: .ss-frame з адным-двума здымкамі або проста <img>.
   const shows = $$('[data-slideshow]').map(box => {
     const slide = box.closest('.slide');
-    const imgs = $$('img', box);
+    const frames = Array.from(box.children);
     const bg = $('.ss-bg', slide);
-    // Размыты фон — копія таго ж здымка (браўзер бярэ яе з кэша)
-    const bgs = bg ? imgs.map(im => { const c = el('img'); c.src = im.getAttribute('src'); c.alt = ''; bg.appendChild(c); return c; }) : [];
+    // Размыты фон — копія першага здымка кадра (браўзер бярэ яе з кэша)
+    const bgs = bg ? frames.map(f => {
+      const im = f.matches('img') ? f : $('img', f);
+      const c = el('img'); c.alt = '';
+      if (im) c.src = im.getAttribute('src');
+      bg.appendChild(c); return c;
+    }) : [];
     const count = $('[data-ss-count]', slide);
     const ms = +box.dataset.interval || 2000;
     let i = 0, int = 0;
     const show = (n) => {
-      i = (n + imgs.length) % imgs.length;
-      imgs.forEach((im, k) => im.classList.toggle('on', k === i));
+      i = (n + frames.length) % frames.length;
+      frames.forEach((f, k) => f.classList.toggle('on', k === i));
       bgs.forEach((im, k) => im.classList.toggle('on', k === i));
-      if (count) count.textContent = `${i + 1} / ${imgs.length}`;
+      if (count) count.textContent = `${i + 1} / ${frames.length}`;
     };
-    if (imgs.length) show(0);
+    if (frames.length) show(0);
     return {
       slide,
-      start() { clearInterval(int); if (imgs.length < 2 || STATIC) return; show(0); int = setInterval(() => show(i + 1), ms); },
+      start() { clearInterval(int); if (frames.length < 2 || STATIC) return; show(0); int = setInterval(() => show(i + 1), ms); },
       stop() { clearInterval(int); },
     };
   });
@@ -293,96 +192,28 @@
   }
   const prettyUrl = (u) => {
     let s = u.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
-    if (s.length > 36) s = s.slice(0, 24) + '…' + s.slice(-9);
+    if (s.length > 44) s = s.slice(0, 30) + '…' + s.slice(-11);
     return s;
   };
   function initLinks() {
-    // data-qr / data-link без значэння — спасылка на першы праект ChatGPT; data-qr="chatgptUrl2" — на другі;
-    // data-qr="deckUrl" — на прэзентацыю
-    const urlOf = (key) => (CFG[key || 'chatgptUrl'] || '').trim();
-    const labelOf = (key) => CFG[(key || 'chatgptUrl').replace(/Url(\d*)$/, 'Label$1')] || prettyUrl(urlOf(key));
+    // data-qr / data-link бяруць спасылку з js/config.js: без значэння — deckUrl (сама прэзентацыя),
+    // са значэннем — ключ з канфіга. Подпіс — аднайменны …Label, а калі яго няма, сама спасылка без https://
+    const urlOf = (key) => (CFG[key || 'deckUrl'] || '').trim();
+    const labelOf = (key) => CFG[(key || 'deckUrl').replace(/Url(\d*)$/, 'Label$1')] || prettyUrl(urlOf(key));
     $$('[data-qr]').forEach(box => {
       const url = urlOf(box.dataset.qr);
       if (url && window.qrcode) box.innerHTML = qrSvg(url);
       else box.innerHTML = '<div class="qr-empty">Тут будзе QR-код.<br>Устаўце спасылку ў js/config.js</div>';
     });
     $$('[data-link]').forEach(n => {
-      const key = n.dataset.link || 'chatgptUrl';
-      const url = urlOf(key);
+      const url = urlOf(n.dataset.link);
       if (!url) { n.textContent = 'спасылка яшчэ не ўстаўлена'; return; }
       n.innerHTML = '';
       const a = el('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener';
-      a.textContent = labelOf(key);
+      a.textContent = labelOf(n.dataset.link);
       n.appendChild(a);
     });
-    // Карткі-спасылкі: data-href="ключ" бярэ адрас з канфіга; пакуль адраса няма, картка схаваная
-    $$('a[data-href]').forEach(a => { const url = urlOf(a.dataset.href); a.hidden = !url; if (url) a.href = url; });
-    $$('[data-label]').forEach(n => { if (urlOf(n.dataset.label)) n.textContent = labelOf(n.dataset.label); });
-    $$('[data-config-warning]').forEach(n => { n.hidden = !!urlOf(n.dataset.configWarning); });
-    $$('[data-timer-min]').forEach(n => { n.textContent = Math.round(T.total / 60); });
   }
-
-  /* ---------- Жывы слоўнічак ---------- */
-  const SKEY = 'presa-slounik-v1';
-  const sLoad = () => { try { const v = JSON.parse(localStorage.getItem(SKEY)); return Array.isArray(v) ? v : []; } catch (e) { return []; } };
-  const sSave = (list) => { try { localStorage.setItem(SKEY, JSON.stringify(list)); } catch (e) { /* без захавання */ } };
-  function sRender() {
-    $$('[data-slounik]').forEach(box => {
-      if (box.closest('.pv-next')) return;
-      let list = sLoad();
-      if (!list.length) list = [{ w: '', g: '', m: '' }, { w: '', g: '', m: '' }];
-      box.innerHTML = '';
-      list.forEach(it => box.appendChild(sRow(it)));
-    });
-  }
-  function sRow(it) {
-    const row = el('div', 'item');
-    [['w', 'новае слова'], ['g', 'група'], ['m', 'што яно значыць і як ужываць']].forEach(([f, ph]) => {
-      const c = el('div', f); c.contentEditable = 'true'; c.spellcheck = false; c.dataset.f = f; c.dataset.ph = ph;
-      c.textContent = it[f] || ''; row.appendChild(c);
-    });
-    const del = el('button', 'del', '×'); del.type = 'button'; del.title = 'Выдаліць';
-    row.appendChild(del);
-    return row;
-  }
-  function sCollect(box) {
-    return $$('.item', box).map(r => ({ w: $('.w', r).textContent.trim(), g: $('.g', r).textContent.trim(), m: $('.m', r).textContent.trim() }))
-      .filter(x => x.w || x.g || x.m);
-  }
-  document.addEventListener('input', (e) => {
-    const box = e.target.closest && e.target.closest('[data-slounik]');
-    if (!box) return;
-    if (e.target.textContent === '') e.target.innerHTML = '';
-    sSave(sCollect(box));
-  });
-  document.addEventListener('paste', (e) => {
-    if (!e.target.closest || !e.target.closest('[data-slounik]')) return;
-    e.preventDefault();
-    const text = (e.clipboardData || window.clipboardData).getData('text/plain').replace(/\s+/g, ' ');
-    document.execCommand('insertText', false, text);
-  });
-  document.addEventListener('click', (e) => {
-    const del = e.target.closest('[data-slounik] .del');
-    if (del) {
-      const box = del.closest('[data-slounik]');
-      del.closest('.item').remove(); sSave(sCollect(box));
-      if (!$('.item', box)) sRender();
-      return;
-    }
-    const add = e.target.closest('[data-slounik-add]');
-    if (add) {
-      const box = $('[data-slounik]', add.closest('.slide'));
-      const row = sRow({}); box.appendChild(row);
-      box.scrollTop = box.scrollHeight;
-      $('.w', row).focus();
-    }
-  });
-  addEventListener('storage', (e) => {
-    if (e.key !== SKEY) return;
-    const focused = document.activeElement && document.activeElement.closest && document.activeElement.closest('[data-slounik]');
-    if (!focused) sRender();
-  });
-  hooks.slounik = { enter() { /* нічога */ } };
 
   /* ---------- Нататкі ---------- */
   const notesPanel = el('div', 'notes-panel');
@@ -410,9 +241,6 @@
     <dt>N</dt><dd>нататкі на гэтым экране</dd>
     <dt>B або .</dt><dd>чорны экран</dd>
     <dt>лічба + Enter</dt><dd>перайсці да слайда</dd>
-    <dt>K</dt><dd>відэа: паўза / прайграць</dd>
-    <dt>S / R</dt><dd>таймер: старт-паўза / скінуць</dd>
-    <dt>+ / −</dt><dd>таймер: ±1 хвіліна</dd>
   </dl></div>`);
   document.body.appendChild(help);
   help.addEventListener('click', () => help.classList.remove('on'));
@@ -512,11 +340,6 @@
       case 'n': case 'N': case 'т': case 'Т': toggleNotes(); break;
       case 'p': case 'P': case 'з': case 'З': openPresenter(); break;
       case 'b': case 'B': case '.': case 'и': case 'І': case 'і': toggleBlack(); break;
-      case 's': case 'S': case 'ы': case 'Ы': tToggle(); break;
-      case 'r': case 'R': case 'к': case 'К': tReset(); break;
-      case 'k': case 'K': case 'л': case 'Л': toggleVideo(); break;
-      case '+': case '=': tAdjust(1); break;
-      case '-': case '_': tAdjust(-1); break;
       case '?': case 'h': case 'H': toggleHelp(); break;
       default: return;
     }
@@ -525,7 +348,7 @@
 
   /* ---------- Мыш і дотык ---------- */
   let swiped = false, tx = 0, ty = 0;
-  const interactive = (n) => n.closest('a, button, [contenteditable="true"], input, textarea, select, [data-timer], .no-nav, .hud');
+  const interactive = (n) => n.closest('a, button, [contenteditable="true"], input, textarea, select, .no-nav, .hud');
   addEventListener('touchstart', (e) => { const p = e.changedTouches[0]; tx = p.clientX; ty = p.clientY; swiped = false; }, { passive: true });
   addEventListener('touchend', (e) => {
     if (document.body.classList.contains('overview') || PRESENTER) return;
@@ -600,8 +423,6 @@
   /* ---------- Старт ---------- */
   if (PRESENTER) buildPresenter();
   initLinks();
-  sRender();
-  tRender();
   fit();
   const start = fromHash();
   idx = start ?? 0;
